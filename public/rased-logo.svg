@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800" width="800" height="800">
+  <!-- Blue shield outline -->
+  <path d="M400 100 C 250 100, 150 150, 150 300 C 150 500, 300 650, 400 700 C 500 650, 650 500, 650 300 C 650 150, 550 100, 400 100 Z" fill="#fff" stroke="#004790" stroke-width="30"/>
+
+  <!-- Gold stars on top -->
+  <g transform="translate(400, 210) scale(0.7)">
+    <!-- Center large star -->
+    <path d="M0 -60 L17.6 -18.5 L63.5 -18.5 L26 7.1 L40.5 48.5 L0 25 L-40.5 48.5 L-26 7.1 L-63.5 -18.5 L-17.6 -18.5 Z" fill="#FFCC00" transform="scale(1.5)"/>
+    
+    <!-- Flanking medium stars -->
+    <path d="M0 -60 L17.6 -18.5 L63.5 -18.5 L26 7.1 L40.5 48.5 L0 25 L-40.5 48.5 L-26 7.1 L-63.5 -18.5 L-17.6 -18.5 Z" fill="#FFCC00" transform="translate(-140, 0) scale(1.2)"/>
+    <path d="M0 -60 L17.6 -18.5 L63.5 -18.5 L26 7.1 L40.5 48.5 L0 25 L-40.5 48.5 L-26 7.1 L-63.5 -18.5 L-17.6 -18.5 Z" fill="#FFCC00" transform="translate(140, 0) scale(1.2)"/>
+    
+    <!-- Small outer stars -->
+    <path d="M0 -60 L17.6 -18.5 L63.5 -18.5 L26 7.1 L40.5 48.5 L0 25 L-40.5 48.5 L-26 7.1 L-63.5 -18.5 L-17.6 -18.5 Z" fill="#FFCC00" transform="translate(-230, 0) scale(0.8)"/>
+    <path d="M0 -60 L17.6 -18.5 L63.5 -18.5 L26 7.1 L40.5 48.5 L0 25 L-40.5 48.5 L-26 7.1 L-63.5 -18.5 L-17.6 -18.5 Z" fill="#FFCC00" transform="translate(230, 0) scale(0.8)"/>
+  </g>
+
+  <!-- Blue graduation cap -->
+  <path d="M400 320 L320 350 L400 380 L480 350 Z" fill="#004790"/>
+  <path d="M400 380 L320 350 L320 360 L400 390 Z" fill="#004790"/>
+  <rect x="415" y="320" width="5" height="40" fill="#004790"/>
+  <circle cx="420" cy="320" r="5" fill="#004790"/>
+
+  <!-- Blue people icons -->
+  <circle cx="400" cy="430" r="35" fill="#004790"/>
+  <circle cx="320" cy="430" r="35" fill="#004790"/>
+  <circle cx="480" cy="430" r="35" fill="#004790"/>
+  <circle cx="360" cy="500" r="35" fill="#004790"/>
+  <circle cx="440" cy="500" r="35" fill="#004790"/>
+
+  <!-- Light blue book outline -->
+  <path d="M250 550 Q 400 450, 550 550 Q 400 650, 250 550 Z" fill="none" stroke="#00A0E9" stroke-width="20"/>
+
+  <!-- Eye in center of book -->
+  <circle cx="400" cy="550" r="25" fill="#fff" stroke="#004790" stroke-width="5"/>
+  <circle cx="400" cy="550" r="10" fill="#333"/>
+  <circle cx="395" cy="545" r="5" fill="#fff"/>
+
+  <!-- Year in Arabic/Gregorian -->
+  <text x="400" y="650" font-family="Arial, sans-serif" font-weight="bold" font-size="48" text-anchor="middle" fill="#000">2025-١٤٤٦</text>
+</svg> 
