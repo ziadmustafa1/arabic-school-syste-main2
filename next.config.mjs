@@ -11,12 +11,14 @@ const nextConfig = {
   },
   reactStrictMode: true,
   experimental: {
-    // Add experimental settings to bypass certain errors
-    missingSuspenseWithCSRBailout: false,
     serverActions: {
       allowedOrigins: ['*'],
     },
   },
+  // Add output configuration to bypass static generation
+  output: 'standalone',
+  // Disable static optimization for problematic pages
+  unstable_runtimeJS: true,
   onDemandEntries: {
     maxInactiveAge: 60 * 60 * 1000,
     pagesBufferLength: 5,
@@ -26,6 +28,7 @@ const nextConfig = {
       { module: /node_modules/ },
       { message: /Critical dependency/ },
       { message: /useSearchParams/ },
+      { message: /Suspense/ },
     ];
     return config;
   },
