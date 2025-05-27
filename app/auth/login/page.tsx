@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect, Suspense } from "react"
+import { useState, useEffect } from "react"
 import { useRouter, useSearchParams } from "next/navigation"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
@@ -13,7 +13,7 @@ import { Alert, AlertDescription } from "@/components/ui/alert"
 import { createClient } from "@/lib/supabase/client"
 import { ResetAuthButton } from "@/components/reset-auth-button"
 
-function LoginForm() {
+export default function LoginPage() {
   const router = useRouter()
   const searchParams = useSearchParams()
   const [loading, setLoading] = useState(false)
@@ -210,24 +210,5 @@ function LoginForm() {
         </CardFooter>
       </Card>
     </div>
-  )
-}
-
-export default function LoginPage() {
-  return (
-    <Suspense fallback={
-      <div className="flex min-h-screen items-center justify-center p-4 bg-muted/40">
-        <Card className="max-w-md w-full">
-          <CardHeader className="space-y-1 text-center">
-            <CardTitle className="text-2xl mb-2">جاري التحميل...</CardTitle>
-            <CardDescription>
-              <Loader2 className="h-6 w-6 animate-spin mx-auto" />
-            </CardDescription>
-          </CardHeader>
-        </Card>
-      </div>
-    }>
-      <LoginForm />
-    </Suspense>
   )
 }
