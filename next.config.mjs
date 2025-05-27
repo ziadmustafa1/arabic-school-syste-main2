@@ -7,47 +7,76 @@ const nextConfig = {
     ignoreBuildErrors: true,
   },
   images: {
-    unoptimized: true,
+    domains: ['localhost'],
   },
   reactStrictMode: true,
-  experimental: {
-    serverActions: {
-      allowedOrigins: ['*'],
-    },
-  },
-  // Add output configuration to bypass static generation
+  // Enable dynamic rendering
   output: 'standalone',
-  // Disable static optimization for problematic pages
-  unstable_runtimeJS: true,
-  onDemandEntries: {
-    maxInactiveAge: 60 * 60 * 1000,
-    pagesBufferLength: 5,
+  experimental: {
+    // Enable server actions
+    serverActions: {},
   },
-  webpack: (config, { isServer }) => {
-    config.ignoreWarnings = [
-      { module: /node_modules/ },
-      { message: /Critical dependency/ },
-      { message: /useSearchParams/ },
-      { message: /Suspense/ },
-    ];
-    return config;
-  },
-  env: {
-    NEXT_PUBLIC_SUPABASE_SERVICE_ROLE_KEY: process.env.SUPABASE_SERVICE_ROLE_KEY,
-  },
+  serverExternalPackages: ['cookies'],
+  // Configure dynamic routes
   async headers() {
     return [
       {
-        source: '/admin/:path*',
+        source: '/:path*',
         headers: [
           {
             key: 'Cache-Control',
-            value: 'no-store, max-age=0',
+            value: 'no-store, must-revalidate',
           },
         ],
       },
     ]
-  }
+  },
+  // Mark admin routes as dynamic
+  async rewrites() {
+    return {
+      beforeFiles: [
+        {
+          source: '/admin/:path*',
+          destination: '/admin/:path*',
+          has: [
+            {
+              type: 'cookie',
+              key: 'supabase-auth-token',
+            },
+          ],
+        },
+      ],
+    }
+  },
+  env: {
+    NEXT_PUBLIC_SUPABASE_SERVICE_ROLE_KEY: process.env.SUPABASE_SERVICE_ROLE_KEY,
+  },
+  // Optimize webpack config
+  webpack: (config, { isServer }) => {
+    // Optimize chunks
+    config.optimization = {
+      ...config.optimization,
+      runtimeChunk: 'single',
+      splitChunks: {
+        chunks: 'all',
+        maxInitialRequests: Infinity,
+        minSize: 0,
+        cacheGroups: {
+          vendor: {
+            test: /[\\/]node_modules[\\/]/,
+            name(module) {
+              const match = module.context && module.context.match(/[\\/]node_modules[\\/](.*?)([\\/]|$)/);
+              if (match && match[1]) {
+                return `vendor.${match[1].replace('@', '')}`;
+              }
+              return 'vendor';
+            },
+          },
+        },
+      },
+    }
+    return config
+  },
 }
 
 export default nextConfig
